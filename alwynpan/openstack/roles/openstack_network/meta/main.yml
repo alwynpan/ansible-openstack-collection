@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: MIT-0
+galaxy_info:
+  author: alwynpan
+  description: Create and manage OpenStack networks, subnets, and routers using Ansible.
+  company: alwynpan
+  issue_tracker_url: https://github.com/alwynpan/ansible-openstack-collection/issues
+  license: MIT
+  min_ansible_version: "2.9"
+
+  galaxy_tags:
+    - openstack
+    - network
+    - subnet
+    - router
+    - setup
+    - environment
+    - dependencies
+    - local
+
+dependencies:
+  - alwynpan.openstack.openstack_common

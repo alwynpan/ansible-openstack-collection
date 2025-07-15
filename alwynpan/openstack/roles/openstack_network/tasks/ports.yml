@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: MIT-0
+---
+- name: Create ports
+  openstack.cloud.port:
+    cloud: "{{ cloud }}"
+    auth:
+      project_name: "{{ project_name }}"
+    name: "{{ item.1.name }}"
+    network: "{{ item.0.network_name }}"
+    fixed_ips:
+      - ip_address: "{{ item.1.fixed_ip }}"
+    security_groups: "{{ item.1.security_groups }}"
+  loop: "{{ lookup('subelements', networks, 'ports', {'skip_missing': True}) }}"

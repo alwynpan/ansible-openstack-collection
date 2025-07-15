@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: MIT-0
+galaxy_info:
+  author: alwynpan
+  description: Create and manage OpenStack instances (servers) with configurable flavors, images, networks, and volumes.
+  company: alwynpan
+  issue_tracker_url: https://github.com/alwynpan/ansible-openstack-collection/issues
+  license: MIT
+  min_ansible_version: "2.9"
+
+  galaxy_tags:
+    - openstack
+    - instance
+    - server
+    - compute
+    - setup
+    - environment
+    - dependencies
+    - local
+
+dependencies:
+  - alwynpan.openstack.openstack_common
+  - alwynpan.openstack.openstack_network
+  - alwynpan.openstack.openstack_volume
