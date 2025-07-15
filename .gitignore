@@ -1,0 +1,5 @@
+.vscode
+
+.ansible/.lock
+
+alwynpan/openstack/alwynpan-openstack-*.tar.gz

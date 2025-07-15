@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: MIT-0
+---
+- name: Create networks
+  openstack.cloud.network:
+    cloud: "{{ cloud }}"
+    auth:
+      project_name: "{{ project_name }}"
+    name: "{{ item.network_name }}"
+    state: present
+  # when: networks is defined
+  loop: "{{ networks | default([]) }}"
+
+- name: Create subnets
+  openstack.cloud.subnet:
+    cloud: "{{ cloud }}"
+    auth:
+      project_name: "{{ project_name }}"
+    name: "{{ item.1.name }}"
+    network_name: "{{ item.0.network_name }}"
+    cidr: "{{ item.1.cidr }}"
+    gateway_ip: "{{ item.1.gateway_ip | default(omit) }}"
+    no_gateway_ip: "{{ 'no' if item.1.gateway_ip is defined else 'yes' | bool }}"
+    state: present
+  # when: networks is defined
+  loop: "{{ lookup('subelements', networks | default([]), 'subnets', {'skip_missing': True}) }}"
+
+- name: Include port tasks
+  ansible.builtin.include_tasks: ports.yml
+  when: networks is defined and (networks | selectattr('ports', 'defined') | list | count > 0)
